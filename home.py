@@ -7,5 +7,9 @@ app = Flask(__name__)
 def index():
     return app.send_static_file('index.html') # Load index.html file
 
+@app.route('/<digit>')
+def fname(digit): 
+    return 'Digit:' + digit
+
 if __name__ == "__main__":
     app.run()
