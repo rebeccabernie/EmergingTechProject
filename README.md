@@ -1,5 +1,12 @@
-# Emerging Technologies Project
-This is a project for 4th Year Software Development module Emerging Technologies.  The web application will recognise digits in images. either uploaded or drawn by the user. The project uses [Flask](http://flask.pocoo.org/) and [TensorFlow](https://www.tensorflow.org/).
+# Digit Recogniser Project
+
+> Student: Rebecca Kane, G00320698  
+
+> Module: Emerging Technologies / 4th Year   
+> Lecturer: Dr Ian McLoughlin  
+> [Project Specification](https://emerging-technologies.github.io/problems/project.html)  
+
+This project is a web application that will recognise digits in images uploaded (or drawn) by a user. The project uses [Flask](http://flask.pocoo.org/) and [TensorFlow](https://www.tensorflow.org/).
 
 ### Project Outline
 1. Create a web application in Python to recognise digits in images.  
