@@ -6,17 +6,12 @@
     </head>
     
     <body>
-    
-        <h1> Hello World </h1>
 
-        <form action="/digit" method="GET">
-            <div class="form-group">
-                <label for="digit">Digit</label>
-                <input type="text" class="form-control" name="digit"> 
-            </div> 
-            
-            <button type="submit" id="submit" class="btn btn-primary"> Submit </button> </form>
-                
+        <h1>Upload File</h1>
+        <form method=post enctype=multipart/form-data>
+            <p><input type=file name=file>
+               <input type=submit value=Upload></p>
+        </form>
 
     </body>
 </html>
