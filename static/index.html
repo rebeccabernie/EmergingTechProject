@@ -6,12 +6,25 @@
     </head>
     
     <body>
+        <div class = "container">
+            <h1>Upload File</h1>
+            <form method=post enctype=multipart/form-data>
+                <p><input type=file name=file>
+                <input type=submit value=Upload></p>
+            </form>
+        </div>
 
-        <h1>Upload File</h1>
-        <form method=post enctype=multipart/form-data>
-            <p><input type=file name=file>
-               <input type=submit value=Upload></p>
-        </form>
+        <div class="container" id="uploadImage" >
+                <form action="/uploadedImage" method="POST">
+                  <div class="form-group">
+                    <br/>
+                    <label for="serveroutput">Your Image</label>
+                    <div id = "digitImg">
+                      <textarea class="form-control" id="output" placeholder="Please upload an image." readonly></textarea>
+                    </div>
+                  </div>
+                </form>
+            </div>
 
     </body>
 </html>
