@@ -3,28 +3,41 @@
     <head>
         <meta charset="utf-8">
         <title>Digit Recogniser</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        
     </head>
     
     <body>
-        <div class = "container">
-            <h1>Upload File</h1>
-            <form method=post enctype=multipart/form-data>
+      <div class = "container">
+          <nav class="navbar fixed-top" style="background: #3A9288">
+            <a class="navbar-brand text-white" href="#">Digit Recogniser</a>
+          </nav>
+        </div>
+        
+        
+        <div class = "container" style="padding-top: 100px">
+          <div class="row">
+            <div class="col-sm-6">
+              <h1 style="color: #21524C">Upload File</h1>
+              <form method=post enctype=multipart/form-data>
                 <p><input type=file name=file>
                 <input type=submit value=Upload></p>
-            </form>
-        </div>
-
-        <div class="container" id="uploadImage" >
-                <form action="/uploadedImage" method="POST">
-                  <div class="form-group">
-                    <br/>
-                    <label for="serveroutput">Your Image</label>
-                    <div id = "digitImg">
-                      <textarea class="form-control" id="output" placeholder="Please upload an image." readonly></textarea>
-                    </div>
-                  </div>
-                </form>
+              </form>
             </div>
-
+        
+            <div class="col-sm-6" id="uploadedImage" style="background: #EEF7F5">
+              <form action="/uploadedImage" method="POST">
+                <div class="form-group">
+                  <br/>
+                  <label for="serveroutput">Your Image</label>
+                  <div id = "digitImg">
+                  <textarea class="form-control" id="output" placeholder="Please upload an image." readonly></textarea>
+                </div>
+              </form>
+                    
+            </div>
+        
+          </div>
+        </div>
     </body>
 </html>
