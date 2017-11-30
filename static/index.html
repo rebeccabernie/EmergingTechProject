@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <title>Digit Recogniser</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        
     </head>
     
     <body>
@@ -14,22 +13,24 @@
           </nav>
         </div>
         
-        <div class = "container" style="padding-top: 100px">
+        <div class = "container-fluid" style="padding-top: 100px">
           <div class="row">
+            <div class="col-sm-5">
+              <h2 style="margin-left: 10px; color: #21524C">Upload File</h2>
+                <div style="margin:10px"><input type=file name=file onchange="loadFile(event)"/></div>
+                <div style="height: 210px; width: auto; margin: 10px; padding: 5px; background: #EEF7F5">
+                    <img id="imgDisp" margin="10px" style="max-height: 200px; max-width: 200px; height: auto; width: auto; margin-left: auto; margin-right: auto;"/>
+                </div>
+                
+                <input type=button class="btn btn-block text-white" style="background: #3A9288" value="Upload" onclick="saveFile()">
+            </div>
+
             <div class="col-sm-7">
-              <h1 style="color: #21524C">Upload File</h1>
-
-              <form method="POST" id="upload-form" target="form-iframe" name="upload-form" enctype=multipart/form-data>
-                <p><input type=file name=file onchange="loadFile(event)">
-                <button type=submit value=Upload></p>
-              </form>
-
+             <h2 style="margin-left: 10px; color: #21524C">Prediction: </h2>
+              <div style="background: #EEF7F5; margin: 10px">
+                
+              </div>
             </div>
-
-            <div class="col-sm-7" id="uploadedImage" style="background: #EEF7F5">
-                <img id="imgDisp" height="200px"/>
-            </div>
-          </div>
         </div>
     </body>
 
@@ -42,8 +43,14 @@
           output.src = URL.createObjectURL(event.target.files[0]);
         };
 
-        $("<iframe id='form-iframe' />").appendTo(document.body);
-        $("form").attr("target", "form-iframe");
+        $('#upload-form').submit(function () {
+          saveFile();
+          return false;
+        });
+
+        var saveFile = function(){
+          console.log("Save function hit")
+        };
 
     </script>
 
