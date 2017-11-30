@@ -18,76 +18,32 @@
           <div class="row">
             <div class="col-sm-7">
               <h1 style="color: #21524C">Upload File</h1>
-              <form method="POST" id="upload-form" enctype=multipart/form-data>
+
+              <form method="POST" id="upload-form" target="form-iframe" name="upload-form" enctype=multipart/form-data>
                 <p><input type=file name=file onchange="loadFile(event)">
                 <button type=submit value=Upload></p>
               </form>
+
             </div>
 
-            <div class="col-sm-7">
+            <div class="col-sm-7" id="uploadedImage" style="background: #EEF7F5">
                 <img id="imgDisp" height="200px"/>
             </div>
-            <!--
-            <div class="col-sm-7" id="uploadedImage" style="background: #EEF7F5">
-              <form action="/uploadedImage" method="POST">
-                <div class="imgDisp">
-                  <br/>
-                  <label for="serveroutput">Your Image</label>
-                  <div id = "digitImg">
-                  <textarea class="form-control" id="output" placeholder="Please upload an image." readonly></textarea>
-                  <img id="imgDisp" height="200px"/>
-
-                </div>
-              </form>
-                    
-            </div> -->
-        
           </div>
         </div>
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
-      /* onsubmit="saveFile()"
-      function readURL(input) {
-        $images = $('.imageOutput')
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-            $('#imageDisp').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-            input.preventDefault();
-            }
-        }
-
-        $("#imgDisp").change(function() {
-        readURL(this);
-        });*/
 
         // adapted from https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
         var loadFile = function(event) {
           var output = document.getElementById('imgDisp');
           output.src = URL.createObjectURL(event.target.files[0]);
         };
-        /*
-        $("form#upload-form").submit(function(){
-          var formData = new FormData(this);
 
-          $.ajax({
-              url : '/uploadedImage',
-              type : 'POST',
-              data: formData,
-              async: false,
-              // your other config, params
-              success : function(){console.log(data)},
-              error : function(e){console.log(e)}
-          });
-
-          return false;
-        });*/
+        $("<iframe id='form-iframe' />").appendTo(document.body);
+        $("form").attr("target", "form-iframe");
 
     </script>
 

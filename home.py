@@ -40,7 +40,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect()
+            #return redirect()
             #return uploaded_file(filename)
             #return #redirect(url_for('upload_file')) #uploaded_file(filename) #jsonify({"result": randint(0,9)}), 200 #redirect(url_for('uploaded_file' filename=filename))
     return
