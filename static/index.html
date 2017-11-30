@@ -27,11 +27,12 @@
         
             <div class="col-sm-6" id="uploadedImage" style="background: #EEF7F5">
               <form action="/uploadedImage" method="POST">
-                <div class="form-group">
+                <div class="imgDisp">
                   <br/>
                   <label for="serveroutput">Your Image</label>
                   <div id = "digitImg">
                   <textarea class="form-control" id="output" placeholder="Please upload an image." readonly></textarea>
+                  <img src="" class="imageDisp" style="width: 100%;" >                  
                 </div>
               </form>
                     
@@ -40,4 +41,25 @@
           </div>
         </div>
     </body>
+
+    <script>
+      function readURL(input) {
+        $images = $('.imageOutput')
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            $('#imageDisp').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+            input.preventDefault();
+            }
+        }
+
+        $("#imgDisp").change(function() {
+        readURL(this);
+        });
+    </script>
+
 </html>
