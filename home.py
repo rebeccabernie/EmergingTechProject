@@ -3,6 +3,8 @@ import os, base64
 from werkzeug.utils import secure_filename
 from PIL import Image
 
+import mnist
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -21,6 +23,8 @@ def save():
 
     with open("img.png", "wb") as f: # Create a writeable file called img.png
         f.write(base64.b64decode(imgData)) # Decode the data and write to an image
+
+    mnist.test()
     
     #print("img file written")
     return json.dumps(img)
