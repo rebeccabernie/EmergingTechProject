@@ -25,8 +25,10 @@ def save():
     with open("img.png", "wb") as f: # Create a writeable file called img.png
         f.write(base64.b64decode(imgData)) # Decode the data and write to an image
 
-    im = Image.open("img.png").convert("L")
-    im = io.fit(im, (28, 28))
+    colour = Image.open("img.png")
+    sized = io.fit(colour, (28, 28))
+    grey = sized.convert("L")
+    im = grey.point((lambda x: 0 if x<128 else 255), '1')    
     im.save('img.png')
 
 
