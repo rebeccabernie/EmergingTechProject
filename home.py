@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 import os, base64
 from werkzeug.utils import secure_filename
 from PIL import Image
+from PIL import ImageOps as io
 
 import mnist
 
@@ -23,6 +24,11 @@ def save():
 
     with open("img.png", "wb") as f: # Create a writeable file called img.png
         f.write(base64.b64decode(imgData)) # Decode the data and write to an image
+
+    im = Image.open("img.png").convert("L")
+    im = io.fit(im, (28, 28))
+    im.save('img.png')
+
 
     mnist.test()
     

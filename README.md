@@ -19,7 +19,7 @@ This project is a web application that will recognise digits in images uploaded 
 
 ### Digit Recognition Feature
   * MNIST Data set, TensorFlow
-  * One Hot Encoding: Data in format better suited to machine learning.  A *one hot vector* is a vector that has many dimensions, one containing a `1` and the rest containing `0`s. A `1` indicates that the vector is that category. In terms of MNIST, a digit $n$ is represented as a `1` in the $n%th column. This data might look like: 
+  * One Hot Encoding: Data in format better suited to machine learning.  A *one hot vector* is a vector that has many dimensions, one containing a `1` and the rest containing `0`s. A `1` indicates that the vector is that category. In terms of MNIST, a digit `n` is represented as a `1` in the `n`th column. This data might look like: 
 
 |     		| 0    | 1 	  | 2 	 | 3 	| 4    | 5 	  | 6 	 | 7 	| 8    | 9    |
 |---- 		| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
