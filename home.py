@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, json
 import os, base64
 from werkzeug.utils import secure_filename
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -15,17 +16,26 @@ def save():
     img =  request.json
     #print("img received")
 
-    #newstrimg = str(img).replace('[{}]','')
     #print(str(img['base64'])) # Print base64 value in json
 
     base64Img = img['base64'] # Convert base64 value in json to a string
-    new = decode_base64(str(base64Img)) # Pass to decoding method, back to bytes for splitting
-    imgData = new.split(',')[1] # Split the decoded data - "data:image/jpeg;base64" causes errors, use the second element 
-    #imgData = base64.b64decode(base64Img, validate=False).split(',')[1]
-    print(imgData)
+    print(type(base64Img))
+    imgData = base64Img.split(',')[1]
 
-    res = open('img.png', 'wb') # create a writable image and write the decoding result
-    res.write(imgData)
+    with open("img.png", "wb") as f:
+        f.write(base64.b64decode(imgData))
+
+
+    # image = Image.fromstring('RGB',(200,200),base64.b64decode(base64Img))
+    # image.save("img.png")
+
+    #new = decode_base64(bytes(base64Img)) # Pass to decoding method, back to bytes for splitting
+    #imgData = base64.b64decode(base64Img).split(',')[1] # Split the decoded data - "data:image/jpeg;base64" causes errors, use the second element 
+    #imgData = base64.b64decode(base64Img, validate=False).split(',')[1]
+    #print(imgData)
+
+    #res = open('img.png', 'wb') # create a writable image and write the decoding result
+    #res.write(imgData)
     
     #print("img file written")
 
