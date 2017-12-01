@@ -18,22 +18,26 @@ def save():
     #newstrimg = str(img).replace('[{}]','')
     #print(str(img['base64'])) # Print base64 value in json
 
-    base64img = str(img['base64'])
-    #newbase64 = base64img.replace('[{}]','')
-    
+    base64Img = img['base64'] # Convert base64 value in json to a string
+    new = decode_base64(str(base64Img)) # Pass to decoding method, back to bytes for splitting
+    imgData = new.split(',')[1] # Split the decoded data - "data:image/jpeg;base64" causes errors, use the second element 
+    #imgData = base64.b64decode(base64Img, validate=False).split(',')[1]
+    print(imgData)
 
-    new = base64.decodestring(bytes(base64img, "utf-8"))
-    image_result = open('img.png', 'wb') # create a writable image and write the decoding result
-    image_result.write(new)
+    res = open('img.png', 'wb') # create a writable image and write the decoding result
+    res.write(imgData)
     
-    print("img file written")
+    #print("img file written")
+
     return json.dumps(img)
 
-'''
-@app.route('/uploadedImage')
-def uploaded_file(filename):
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    #return #send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-'''
+def decode_base64(data):
+    # Handles padding errors - adapted from https://stackoverflow.com/a/9807138/7232648
+    missing_padding = len(data) % 4
+    if missing_padding != 0:
+        data += '='* (4 - missing_padding)
+
+    return str(base64.b64decode(data)) # Return the decoded data
+
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
