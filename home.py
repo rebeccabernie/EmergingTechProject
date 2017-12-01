@@ -13,22 +13,27 @@ def index():
 def save():
     #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     img =  request.json
+    print("img received")
     #print(img) # Outputs JSON data to console, test if base64 transferred
     #imgdata = base64.b64decode(img)
     #filename = 'some_image.jpg'  # I assume you have a way of picking unique filenames
     #with open(filename, 'wb') as f:
     #    f.write(imgdata)
 
-    with open('img', 'w') as outfile:
-        json.dump(img, outfile)
+    newstrimg = str(img).replace('[{}]','')
+    print(newstrimg)
+
+    #with open('img', 'w') as outfile:
+        #json.dump(img, outfile)
         
-    newjpgtxt = open(outfile,"rb").read()
+    #newjpgtxt = open('img',"rb").read()
+    #print(newjpgtxt)
 
-    g = open("out.jpg", "w")
-    g.write(newjpgtxt.decode('base64'))
-    g.close()
-
-
+    #new = base64.decodestring(bytes('img', "utf-8"))
+    #image_result = open('img.png', 'wb') # create a writable image and write the decoding result
+    #image_result.write(new)
+    
+    print("img file written")
     return json.dumps(img)
 
 '''
