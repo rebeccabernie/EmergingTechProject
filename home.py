@@ -31,7 +31,6 @@ def save():
     im = grey.point((lambda x: 0 if x<128 else 255), '1')    
     im.save('img.png')
 
-
     mnist.test()
     
     #print("img file written")
