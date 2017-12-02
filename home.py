@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 from PIL import Image
 from PIL import ImageOps as io
 
-import mnist
+import runMnist as rm
 
 app = Flask(__name__)
 
@@ -31,7 +31,11 @@ def save():
     im = grey.point((lambda x: 0 if x<128 else 255), '1')    
     im.save('img.png')
 
-    mnist.test()
+    savedImg = Image.open("img.png")
+    #image = predict(savedImg)
+
+    prediction = rm.predict(savedImg)
+    print(prediction)
     
     #print("img file written")
     return json.dumps(img)
