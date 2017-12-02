@@ -71,7 +71,7 @@ correct_prediction = tf.equal(tf.argmax(y_conv, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 # Save the model, adapted from http://www.itzikbs.com/tensorflow-deep-mnist-experts-tutorial
-saver = tf.train.Saver(max_to_keep=3)
+saver = tf.train.Saver(max_to_keep=1)
 checkpoints = "./checkpoints/mnistmodel" # File will save in checkpoints folder, with prefix. mnistmodel-400
 
 # Train
@@ -82,8 +82,9 @@ with tf.Session() as sess:
     if i % 100 == 0:
       train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
       print('Step: %d, Accuracy: %g' % (i, train_accuracy))
-      saver.save(sess, checkpoints, global_step = i)
     train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+
+  saver.save(sess, checkpoints)
 
   print('Test Accuracy: %g' % accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
 

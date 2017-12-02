@@ -1,4 +1,2 @@
-model_checkpoint_path: "mnistmodel-200"
-all_model_checkpoint_paths: "mnistmodel-0"
-all_model_checkpoint_paths: "mnistmodel-100"
-all_model_checkpoint_paths: "mnistmodel-200"
+model_checkpoint_path: "mnistmodel"
+all_model_checkpoint_paths: "mnistmodel"
