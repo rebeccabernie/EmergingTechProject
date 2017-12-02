@@ -58,11 +58,21 @@ W_fc2 = weight_variable([1024, 10])
 b_fc2 = bias_variable([10])
 y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
 
+#Add inputs / outputs for saving
+tf.add_to_collection("keep_prob", keep_prob)
+tf.add_to_collection("x", x)
+tf.add_to_collection("y_", y_)
+tf.add_to_collection("y_conv", y_conv)
+
 # Evaluate
 cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y_conv))
 train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy) # Adam optimization with learning rate of 0.0001. Adam used when datasets have a seemingly random pattern, see https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/ for further reading
 correct_prediction = tf.equal(tf.argmax(y_conv, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+# Save the model, adapted from http://www.itzikbs.com/tensorflow-deep-mnist-experts-tutorial
+saver = tf.train.Saver(max_to_keep=3)
+checkpoints = "./checkpoints/mnistmodel" # File will save in checkpoints folder, with prefix. mnistmodel-400
 
 # Train
 with tf.Session() as sess:
@@ -70,13 +80,12 @@ with tf.Session() as sess:
   for i in range(300):
     batch = mnist.train.next_batch(50)
     if i % 100 == 0:
-      train_accuracy = accuracy.eval(feed_dict={
-          x: batch[0], y_: batch[1], keep_prob: 1.0})
-      print('step %d, training accuracy %g' % (i, train_accuracy))
+      train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
+      print('Step: %d, Accuracy: %g' % (i, train_accuracy))
+      saver.save(sess, checkpoints, global_step = i)
     train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
 
-  print('test accuracy %g' % accuracy.eval(feed_dict={
-      x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
+  print('Test Accuracy: %g' % accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
 
 #def train():
     # Download MNIST data using input_data.read_data_sets, save it into a folder. 

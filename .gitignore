@@ -4,7 +4,6 @@ __pycache__/
 *$py.class
 
 /MNIST_data
-/checkpoints
 
 # C extensions
 *.so
