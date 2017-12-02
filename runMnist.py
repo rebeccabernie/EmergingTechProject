@@ -2,24 +2,16 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 import numpy as np
-import mnist as m
-import os
 
 # Adapted from http://www.itzikbs.com/tensorflow-deep-mnist-experts-tutorial / https://github.com/sitzikbs/TensorFlow-Tutorials/blob/master/ImportModel.py
-
-if (os.path.isdir("/checkpoints/") == False):
-    print("No checkpoint folder, running mnist")
-    m.run()
-
-elif (os.path.isdir("/checkpoints/") == True):
-    print("Checkpoints found")
 
 # Checkpoints folder and model file
 checkpointsDir = "./checkpoints/"
 model = "mnistmodel"
 
 sess = tf.Session()
-newSaver = tf.train.import_meta_graph(checkpointsDir + model + ".meta") # Recreate the graph saved in the folder
+# Recreate the graph saved in the folder
+newSaver = tf.train.import_meta_graph(checkpointsDir + model + ".meta")
 newSaver.restore(sess, checkpointsDir + model)
 
 # Reload the saved variables
@@ -33,22 +25,15 @@ inputInd = 4
 testImg = mnist.test.images[inputInd].reshape(1, 784)
 actual = mnist.test.labels[inputInd].reshape(1, 10)
 
-logit = sess.run(y_conv,feed_dict={ x: testImg, y_: actual, keep_prob: 1.0})
-prediction = sess.run(tf.argmax(logit,1))
-digit = sess.run(tf.argmax(actual,1))
+logit = sess.run(y_conv, feed_dict={x: testImg, y_: actual, keep_prob: 1.0})
+prediction = sess.run(tf.argmax(logit, 1))
+digit = sess.run(tf.argmax(actual, 1))
 print("Prediction : %d, Actual : %d"% (prediction, digit))
-    
 
 def predict(image):
-    loadModel()
     # Flatten the image into one dimension
-
     imgArr = np.ndarray.flatten(np.array(image)).reshape(1, 784)
 
     prediction = tf.argmax(y_conv,1)
     print("Prediction: {}".format(prediction.eval(feed_dict={x:imgArr, keep_prob:1.0}, session=sess)))
     return prediction.eval(feed_dict={x:imgArr, keep_prob:1.0}, session=sess)
-
-if __name__ == "__main__":
-  predict()
-  loadModel()
