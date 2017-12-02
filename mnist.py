@@ -26,6 +26,10 @@ def conv2d(x, W):
 def max_pool_2x2(x):
   return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
+# Input layer - nodes for input images and target output classes
+x  = tf.placeholder(tf.float32, [None, 784], name='x') # None: batch size, none means any size. 784: flattened 28x28 image, 28 x 28 = 784
+y_ = tf.placeholder(tf.float32, [None, 10],  name='y_') # 10 = one hot encoded 10 dimensional image (categories 0-9, OHE explained in README)
+
 #def train():
     # Download MNIST data using input_data.read_data_sets, save it into a folder. 
     # Use one hot encoding (easier to deal with when using machine learning, explained in readme
