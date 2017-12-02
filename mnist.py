@@ -41,7 +41,22 @@ h_pool1 = max_pool_2x2(h_conv1) # Max pool 2x2 reduces image to 14x14
 W_conv2 = weight_variable([5, 5, 32, 64]) # 5x5 again, 32 inputs (for 32 outputs in 1st layer), 64 outputs - 64 features for each patch
 b_conv2 = bias_variable([64])
 h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
-h_pool2 = max_pool_2x2(h_conv2)
+h_pool2 = max_pool_2x2(h_conv2) # Image size now 7x7
+
+# Densely connected layer (fully connected)
+W_fc1 = weight_variable([7 * 7 * 64, 1024]) # 1024 neurons to process whole image 
+b_fc1 = bias_variable([1024])
+h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64]) # Reshape tensor from pooling layer
+h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1) # Multiply by weight, add bias, apply ReLU
+
+# Dropout - reduces overfitting
+keep_prob = tf.placeholder(tf.float32) # Placeholder for probability that neuron's output is kept duing dropout
+h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob) # .dropout handles scaling automaticall. h_fc1 tensor, prob that n's output is kept
+
+# Readout - output layer
+W_fc2 = weight_variable([1024, 10])
+b_fc2 = bias_variable([10])
+y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
 
 #def train():
     # Download MNIST data using input_data.read_data_sets, save it into a folder. 
