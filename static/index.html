@@ -8,41 +8,42 @@
     crossorigin="anonymous">
 </head>
 
-<body>
-  <div class="container">
-    <nav class="navbar fixed-top" style="background: #3A9288">
-      <a class="navbar-brand text-white" href="#">Digit Recogniser</a>
-    </nav>
+<body style="background: #F1FAFF">
+
+  <div class="jumbotron text-center text-white rounded-0" style="padding-top:20px; padding-bottom:10px; background: rgb(43, 43, 43)">          
+    <h1>Digit Recogniser</h1>
+    <p><i>a neural network for digit recognition</i></p>
   </div>
 
-  <div class="container-fluid" style="padding-top: 100px">
-    <div class="row">
-      <div class="col-sm-5">
-        <h2 style="margin-left: 10px; color: #21524C">Upload File</h2>
-        <form class="form-save" action="/save" method="post">
+  <div class="row align-items-center container-fluid">
 
-          <!-- Choose File & Preview -->
-          <div style="margin:10px">
-            <input class="form-control" width=""id="imgToUpload" type=file name=file onchange="previewFile()"/>
-            <img id="imgDisp" margin="10px" style="border:2px solid #FFFFFF; margin: 10px; max-height: 50px; max-width: 50px; height: auto; width: auto; display:block; margin-left: auto; margin-right: auto;"/>
-          </div>
-
-          <div style="margin:10px">
-              <canvas id="canvas" width="200" height="200" style="background: white; border: 1px solid"></canvas>
-          </div>
-         
-          <button type='button' id="uploadImg01" class="btn btn-block text-white" style="background: #3A9288" onclick="sendFile()">Upload</button>
-          
-        </form>
-
-      </div>
-
-      <div class="col-sm-7">
-        <h2 style="margin-left: 10px; color: #21524C">Prediction: </h2>
-        <div class="prediction" style="background: #EEF7F5; margin: 10px">
+    <div class="col-sm-5 rounded" style="background: #F1FAFF; min-height: 400px; padding-left: 20px">
+      <h2 style="padding: 20px; color: #2E3B46;">Upload File</h2>
+      <form class="form-save" action="/save" method="post">
+        <!-- Choose File & Preview max-width:400px; margin-left: 50px; margin-right: 50px;   padding-left:0px-->
+        <div style="padding-left: 50px; padding-right: 50px;">
+          <input class="form-control" id="imgToUpload" type=file name=file onchange="previewFile()"/>
+          <img id="imgDisp" style="border:2px solid #FFFFFF; height: 100px; width: 100px; display:block; margin-left: auto; margin-right: auto;"/>
         </div>
-      </div>
+        <button type='button' id="uploadImg01" class="btn btn-block text-white" style="background: #AA5635">Upload</button>
+      </form>
+
+      <div class="row">
+          <div class="col-8 col-sm-6">
+              <h2 style="margin-right: 10px; color: #21524C">Prediction: </h2>
+          </div>
+          <div class="col-4 col-sm-6">
+              <div class="prediction" style="background: #EEF7F5; margin: 10px"></div>
+          </div>
+        </div>
     </div>
+
+    <div class="col-sm-7 rounded" style="border: 1px solid #000000;">
+      <p>Information / tips go here</p>
+      <p>Maybe a github link</p>
+    </div>
+
+  </div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -99,38 +100,6 @@
           }
         });
   }) // end button click event
-
-  // Canvas stuff -------------------------------------------------------------------------
-  // Adapted from https://stackoverflow.com/a/8398189/7232648
-  ctx.beginPath();
-    if(posDrag[i] && i){
-        ctx.moveTo(posX[i-1], posY[i-1]);
-    }else{
-        ctx.moveTo(posX[i]-1, posY[i]);
-    }
-    ctx.lineTo(posX[i], posY[i]);
-    ctx.closePath();
-    ctx.stroke();       
-        
-  function reset(){
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-  }
-
-  function sendFile(){
-    canvas = document.getElementById("canvas");
-    var img = canvas.toDataURL('img.png');
-
-    $.ajax({
-        url: '/uploadFile',
-        method: 'POST',
-        data: img ,
-        success: function(res){
-            console.log(res);
-        },error: function(err){
-            console.log(err);
-        }
-    });    
-  }
 
 </script>
 
