@@ -34,6 +34,8 @@ With current settings, the model is between 97-99% accurate. This is achieved us
 2. Use the `Choose File` button to select an image from your computer. I've included 500 sample MNIST test images in the [SampleImages](https://github.com/rebeccabernie/EmergingTechProject/tree/master/SampleImages) folder to choose from, which have not been used to train the model.
 3. Click the `Upload File` button. The program's prediction will appear in the Prediction section.
 
+![example](https://user-images.githubusercontent.com/14957616/33528679-448d4de0-d85c-11e7-9088-3a72239f209c.gif)
+
 
 ### Digit Recognition Feature
 This project uses the training images contained in the [MNIST](http://yann.lecun.com/exdb/mnist/) database of handwritten digits to train a neural network to recognise patterns in images uploaded by the user. The network is trained on 2,500 images, retraining the network after each batch of 100 images.  
@@ -48,3 +50,13 @@ TensorFlow's `examples` module provides access to various example datasets, one 
 In this example, digit x is a 3, y is a 7 and z is a 0.
 
 Once the data is imported, the input, first convolutional, second convolutional, densely connected, and output layers are created. The model is then evaluated and trained. Once trained, the model can be tested against unseen MNIST data to give an accuracy reading. Finally, the program saves certain variables in the checkpoints file, which means the model only has to be trained once - after the first train, saved checkpoints are imported in the `runMnist.py` file and eliminate the need to train the model again.
+
+### Known Problems
+The neural network runs into issues when given particularly "messy" digits, such as the following two examples:  
+![3](https://user-images.githubusercontent.com/14957616/33528686-5179608e-d85c-11e7-9b8e-bd59c79998a8.png) ![6](https://user-images.githubusercontent.com/14957616/33528698-8d6732ce-d85c-11e7-8956-e85ba044cd75.png)  
+The first digit is classed as a 3, but is very similar to a skewed 8. The second is a 6, but looks similar to a 0.  
+For most of the MNIST images, the predictions are accurate.  
+I also came across an issue when testing with images drawn in Microsoft Paint. Images were 28x28 pixels in size and appear clear to the human eye, but the program was unable to predict digits correctly. See below:  
+<img src="https://user-images.githubusercontent.com/14957616/33528746-6d398708-d85d-11e7-9e27-ac1181b7b335.JPG" height="300">  
+Other than these issues, the program runs fine and predicts digits with almost 99% accuracy.
+
