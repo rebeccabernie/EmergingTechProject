@@ -20,12 +20,18 @@
       <div class="col-sm-5">
         <h2 style="margin-left: 10px; color: #21524C">Upload File</h2>
         <form class="form-save" action="/save" method="post">
-          <!-- Choose File & Preview  <div style="height: 210px; width: auto; margin: 10px; padding: 5px; background: #EEF7F5">
-            
-          </div>-->
+
+          <!-- Choose File & Preview -->
           <div style="margin:10px">
             <input class="form-control" width=""id="imgToUpload" type=file name=file onchange="previewFile()"/>
             <img id="imgDisp" margin="10px" style="border:2px solid #FFFFFF; margin: 10px; max-height: 50px; max-width: 50px; height: auto; width: auto; display:block; margin-left: auto; margin-right: auto;"/>
+          </div>
+
+          <div style="margin:10px">
+              <canvas id="can" width="200" height="200" style="border:2px solid; margin: 10px"></canvas>
+              <div style="background:white; border:2px solid;" id="white" onclick="color(this)"></div>
+              <input type="button" value="save" id="btn" size="30" onclick="save()" style="margin: 2px">
+              <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="margin: 2px">
           </div>
          
           <button type='button' id="uploadImg01" class="btn btn-block text-white" style="background: #3A9288" >Upload</button>
