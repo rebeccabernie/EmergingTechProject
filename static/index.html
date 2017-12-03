@@ -87,11 +87,10 @@
           data: file,
           dataType: 'json',
           method: 'POST',
-          // Debug, print success / error
-          success: function (data) {
+          success: function (data) { // If successful, print the prediction to the prediction div
             $('.prediction').text(data.prediction)
           },
-          error: function (error) {
+          error: function (error) { // If not, print an error to the console
             console.log(error);
           }
         });

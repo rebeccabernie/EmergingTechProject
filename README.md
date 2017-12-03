@@ -15,7 +15,14 @@ This project is a web application that will recognise digits in images uploaded 
 
 3. The web application will respond with what it thinks the user's digit is.
 
-### Flask and Bootstrap
+### Getting Set Up
+This project requires Python 3, Flask, TensorFlow, 
+
+### User Guide
+1. 
+
+### Technologies
+
 
 ### Digit Recognition Feature
   * MNIST Data set, TensorFlow

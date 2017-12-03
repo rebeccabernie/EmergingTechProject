@@ -78,12 +78,13 @@ checkpoints = "./checkpoints/mnistmodel" # File will save in checkpoints folder,
 with tf.Session() as sess:
   sess.run(tf.global_variables_initializer())
   for i in range(1500):
-    batch = mnist.train.next_batch(50)
-    if i % 100 == 0:
+    batch = mnist.train.next_batch(50) # Train 50 at a time
+    if i % 100 == 0: # Every 100, print the current accuracy of the network
       train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
-      print('Step: %d, Accuracy: %g' % (i, train_accuracy*100))
+      print('Step: %d, Accuracy: %g' % (i, train_accuracy*100)) # e.g. Step: 300, Accuracy 89 
     train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
 
-  saver.save(sess, checkpoints)
+  saver.save(sess, checkpoints) # Save the checkpoints in mnistmodel.index/meta
 
+  # Print final test accuracy
   print('Test Accuracy: %g%' % accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))

@@ -20,21 +20,11 @@ x = tf.get_collection("x")[0]
 y_ = tf.get_collection("y_")[0]
 y_conv = tf.get_collection("y_conv")[0]
 
-# Test the saved model, 4th image in the dataset is a 4
-inputInd = 4
-testImg = mnist.test.images[inputInd].reshape(1, 784)
-actual = mnist.test.labels[inputInd].reshape(1, 10)
-
-logit = sess.run(y_conv, feed_dict={x: testImg, y_: actual, keep_prob: 1.0})
-prediction = sess.run(tf.argmax(logit, 1))
-digit = sess.run(tf.argmax(actual, 1))
-print("Prediction : %d, Actual : %d"% (prediction, digit))
-
 def predict(image):
     # Flatten the image into one dimension
     imgArr = np.ndarray.flatten(np.array(image)).reshape(1, 784)
 
-    prediction = tf.argmax(y_conv,1)
-    digit = prediction.eval(feed_dict={x:imgArr, keep_prob:1.0}, session=sess)
-    print("Prediction: {}".format(digit))
-    return digit
+    prediction = tf.argmax(y_conv,1) # Return index of y_conv with largest value, in first axis
+    digit = prediction.eval(feed_dict={x:imgArr, keep_prob:1.0}, session=sess) # Run evaluate on the result
+    print("Prediction: {}".format(digit)) # Print the prediction
+    return digit # Return the predicted digit

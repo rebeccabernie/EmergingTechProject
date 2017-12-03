@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory, json, jsonify
-import os, base64
-from werkzeug.utils import secure_filename
+from flask import Flask, request, json, jsonify
+import base64
 from PIL import Image
 from PIL import ImageOps as io
 
@@ -25,20 +24,22 @@ def save():
     with open("img.png", "wb") as f: # Create a writeable file called img.png
         f.write(base64.b64decode(imgData)) # Decode the data and write to an image
 
-    colour = Image.open("img.png")
-    sized = io.fit(colour, (28, 28))
-    grey = sized.convert("L")
-    im = grey.point((lambda x: 0 if x<128 else 255), '1')    
-    im.save('img.png')
+    # Configure the image - longwinded way but works and is easier to read
+    colour = Image.open("img.png") # Open the saved image
+    sized = io.fit(colour, (28, 28)) # Rezise it
+    grey = sized.convert("L") # Convert it to grayscale
 
-    savedImg = io.fit(Image.open("img.png"), (28,28))
-    #image = predict(savedImg)
+    # Image needs to be black -or- white, use a lambda function to loop through each pixel of the image
+    # If the pixel (x) is less than 128 set it to black (0,0,0), if greater set to white (255,255,255)
+    im = grey.point((lambda x: 0 if x<128 else 255), '1') # Mode 1 (black/white)
+    im.save('img.png') # Save the new image
 
-    prediction = rm.predict(savedImg)
-    print(prediction)
+    savedImg = Image.open("img.png") # Save the new version of the image
+
+    prediction = rm.predict(savedImg) # Run prediction function in runMnist.py
+    #print(prediction)
     
-    #print("img file written")
-    return jsonify(prediction = str(prediction[0]))
+    return jsonify(prediction = str(prediction[0])) # Return the result of the prediction function to the ajax call in index.html
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True) # debug=True auto re-runs the program when changes to any file are saved
