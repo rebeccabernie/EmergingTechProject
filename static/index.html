@@ -34,8 +34,7 @@
 
       <div class="col-sm-7">
         <h2 style="margin-left: 10px; color: #21524C">Prediction: </h2>
-        <div style="background: #EEF7F5; margin: 10px">
-
+        <div class="prediction" style="background: #EEF7F5; margin: 10px">
         </div>
       </div>
     </div>
@@ -89,8 +88,8 @@
           dataType: 'json',
           method: 'POST',
           // Debug, print success / error
-          success: function (response) {
-            console.log(response);
+          success: function (data) {
+            $('.prediction').text(data.prediction)
           },
           error: function (error) {
             console.log(error);

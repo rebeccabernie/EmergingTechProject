@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory, json
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, json, jsonify
 import os, base64
 from werkzeug.utils import secure_filename
 from PIL import Image
@@ -38,7 +38,7 @@ def save():
     print(prediction)
     
     #print("img file written")
-    return json.dumps(img)
+    return jsonify(prediction = str(prediction[0]))
 
 if __name__ == "__main__":
     app.run(debug=True)
