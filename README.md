@@ -6,7 +6,9 @@
 > Lecturer: Dr Ian McLoughlin  
 > [Project Specification](https://emerging-technologies.github.io/problems/project.html)  
 
-This project is a web application that will recognise digits in images uploaded (or drawn) by a user. The project uses [Flask](http://flask.pocoo.org/) and [TensorFlow](https://www.tensorflow.org/).
+Digit Recogniser is a web application that will recognise digits in images uploaded by a user. The project was developed in Python3, using [Flask](http://flask.pocoo.org/) and [TensorFlow](https://www.tensorflow.org/). The front-end was built using HTML, [Bootstrap](https://getbootstrap.com/) and [jQuery](http://jquery.com/).  
+
+The MNIST database was used to train the neural network model. The database contains 70,000 handwritten digits, 60,000 or training and the remaining 10,000 for testing. This project was trained using 2,500 images from the training set.
 
 ### Project Outline
 1. Create a web application in Python to recognise digits in images.  
@@ -52,11 +54,15 @@ In this example, digit x is a 3, y is a 7 and z is a 0.
 Once the data is imported, the input, first convolutional, second convolutional, densely connected, and output layers are created. The model is then evaluated and trained. Once trained, the model can be tested against unseen MNIST data to give an accuracy reading. Finally, the program saves certain variables in the checkpoints file, which means the model only has to be trained once - after the first train, saved checkpoints are imported in the `runMnist.py` file and eliminate the need to train the model again.
 
 ### Known Problems
-The neural network runs into issues when given particularly "messy" digits, such as the following two examples:  
+The neural network runs into issues when given particularly "messy" digits, such as the following two examples:
+
 ![3](https://user-images.githubusercontent.com/14957616/33528686-5179608e-d85c-11e7-9b8e-bd59c79998a8.png) ![6](https://user-images.githubusercontent.com/14957616/33528698-8d6732ce-d85c-11e7-8956-e85ba044cd75.png)  
+
 The first digit is classed as a 3, but is very similar to a skewed 8. The second is a 6, but looks similar to a 0.  
 For most of the MNIST images, the predictions are accurate.  
 I also came across an issue when testing with images drawn in Microsoft Paint. Images were 28x28 pixels in size and appear clear to the human eye, but the program was unable to predict digits correctly. See below:  
+
 <img src="https://user-images.githubusercontent.com/14957616/33528746-6d398708-d85d-11e7-9e27-ac1181b7b335.JPG" height="300">  
+
 Other than these issues, the program runs fine and predicts digits with almost 99% accuracy.
 
