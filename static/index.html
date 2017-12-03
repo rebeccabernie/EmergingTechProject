@@ -6,41 +6,52 @@
   <title>Digit Recogniser</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
     crossorigin="anonymous">
+
+    <style>
+      p{
+        font-size: 14px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+      }
+    </style>
 </head>
 
-<body style="background: #F1FAFF">
+<body style="background: rgb(228, 228, 235)">
 
-  <div class="jumbotron text-center text-white rounded-0" style="padding-top:20px; padding-bottom:10px; background: rgb(43, 43, 43)">          
+  <div class="jumbotron text-center text-white rounded-0" style="padding-top:20px; padding-bottom:10px; background: rgb(43, 43, 48)">          
     <h1>Digit Recogniser</h1>
-    <p><i>a neural network for digit recognition</i></p>
+    <p style="font-size: 16px;"><i>a neural network for digit recognition</i></p>
   </div>
 
   <div class="row align-items-center container-fluid">
 
-    <div class="col-sm-5 rounded" style="background: #F1FAFF; min-height: 400px; padding-left: 20px">
-      <h2 style="padding: 20px; color: #2E3B46;">Upload File</h2>
+    <div class="col-lg-5 rounded" style="min-height: 400px; padding-left: 60px">
+      <h2 style="padding: 20px; color: #55317C;">Upload File</h2>
       <form class="form-save" action="/save" method="post">
-        <!-- Choose File & Preview max-width:400px; margin-left: 50px; margin-right: 50px;   padding-left:0px-->
+        <!-- Choose File & Preview 55317C-->
         <div style="padding-left: 50px; padding-right: 50px;">
           <input class="form-control" id="imgToUpload" type=file name=file onchange="previewFile()"/>
-          <img id="imgDisp" style="border:2px solid #FFFFFF; height: 100px; width: 100px; display:block; margin-left: auto; margin-right: auto;"/>
+          <img id="imgDisp" style="border:2px solid #FFFFFF; height: 150px; width: 150px; display:block; margin-top: 20px; margin-bottom: 20px; margin-left: auto; margin-right: auto;"/>
         </div>
-        <button type='button' id="uploadImg01" class="btn btn-block text-white" style="background: #AA5635">Upload</button>
+        <div style="width: 200px; margin-left: auto; margin-right: auto; display:block;"><button type='button' id="uploadImg01" class="btn btn-block text-white" style="background: #9243D3;">Upload</button></div>
       </form>
 
-      <div class="row">
-          <div class="col-8 col-sm-6">
-              <h2 style="margin-right: 10px; color: #21524C">Prediction: </h2>
-          </div>
-          <div class="col-4 col-sm-6">
-              <div class="prediction" style="background: #EEF7F5; margin: 10px"></div>
-          </div>
-        </div>
+      <div class="row" style="margin-left: 20px; padding-right: 50px; margin-top: 40px;">
+          <h2 style="color: #55317C;">Prediction: <h2 style=" padding-left: 10px; color: #55317C;" class="prediction">?</h2></h2>
+      </div>
     </div>
 
-    <div class="col-sm-7 rounded" style="border: 1px solid #000000;">
-      <p>Information / tips go here</p>
-      <p>Maybe a github link</p>
+    <div class="col-lg-7" style="font-family:courier;">
+      <div class="rounded" style="padding-right: 30px; padding-left: 30px; margin-right:50px; margin-top: 40px;">
+      <h4><i><b>Handwritten Digit Recognition</b></i></h3>
+      <p>Select an image file containing one digit, such as one from the MNIST dataset, from your local machine using the "Choose File" button. When the preview appears, tap the "Upload" button. <br> The program will analyse the image and use pattern recognition to predict the digit most likely to be contained in the image.</p>
+      <p>You can find some sample images <a href="https://github.com/rebeccabernie/EmergingTechProject/tree/master/SampleImages">here</a>.</p>
+      <br>
+      <p style="font-size: 12px">The Digit Recogniser is a final year GMIT Software Development project, developed using <a href="https://www.python.org/downloads/">Python 3</a>, <a href="https://www.tensorflow.org/">TensorFlow</a>, <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://pillow.readthedocs.io/en/3.1.x/index.html">Pillow</a> and <a href="http://www.numpy.org/">Numpy</a>.</p>
+
+      <br>
+      <br>
+      <p style="font-size: 12px; text-align: right; padding-right: 10px"><a href="https://github.com/rebeccabernie/EmergingTechProject"><i>Source Code</i></a></p>
+      </div>
     </div>
 
   </div>
