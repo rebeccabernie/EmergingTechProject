@@ -37,7 +37,7 @@ x_image = tf.reshape(x, [-1, 28, 28, 1]) # Reshape to 4D tensor, 28 width, 28 he
 h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1) # Combine the x_image with the weight tensor, add bias, apply ReLU function (rectified linear unit - if the input is greater than 0, output is equal to initial input)
 h_pool1 = max_pool_2x2(h_conv1) # Max pool 2x2 reduces image to 14x14
 
-# Second
+# Second Convolutional Layer
 W_conv2 = weight_variable([5, 5, 32, 64]) # 5x5 again, 32 inputs (for 32 outputs in 1st layer), 64 outputs - 64 features for each patch
 b_conv2 = bias_variable([64])
 h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
@@ -77,7 +77,7 @@ checkpoints = "./checkpoints/mnistmodel" # File will save in checkpoints folder,
 # Train
 with tf.Session() as sess:
   sess.run(tf.global_variables_initializer())
-  for i in range(1500):
+  for i in range(2500):
     batch = mnist.train.next_batch(50) # Train 50 at a time
     if i % 100 == 0: # Every 100, print the current accuracy of the network
       train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
@@ -87,4 +87,4 @@ with tf.Session() as sess:
   saver.save(sess, checkpoints) # Save the checkpoints in mnistmodel.index/meta
 
   # Print final test accuracy
-  print('Test Accuracy: %g%' % accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
+  print('Test Accuracy: {0:g}%'.format(accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})*100))
