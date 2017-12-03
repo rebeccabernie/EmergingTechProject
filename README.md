@@ -16,7 +16,14 @@ This project is a web application that will recognise digits in images uploaded 
 3. The web application will respond with what it thinks the user's digit is.
 
 ### Getting Set Up
-This project requires Python 3, Flask, TensorFlow, 
+To clone this repository to your own machine, open the command line in the directory you wish to clone into and run `git clone https://github.com/rebeccabernie/EmergingTechProject.git`. Once the project has been cloned, type `cd EmergingTechProject` to open the project's directory.  
+
+The project requires [Python 3](https://www.python.org/downloads/), [Flask](http://flask.pocoo.org/), and [TensorFlow](https://www.tensorflow.org/). If you haven't got Python 3 installed, I'd recommend using a distribution like 
+[Anaconda](https://www.anaconda.com/download/) which simplifies installation and can be used to manage packages and updates. [Pillow](http://pillow.readthedocs.io/en/3.1.x/index.html) and [Numpy](http://www.numpy.org/) are used by the program to process and manipulate a given image into the right format for TensorFlow to perform operations on, so these libraries are also required. To install any of the above, run `pip3 install xyz` on the command line in the project folder, where xyz is the component to be installed - e.g. `pip3 install pillow`.  
+*See full installation guides for each of the components for more detail: [Flask](http://flask.pocoo.org/docs/0.12/installation/), [TensorFlow](https://www.tensorflow.org/install/), [Pillow](http://pillow.readthedocs.io/en/3.1.x/installation.html), [Numpy](https://scipy.org/install.html). Note that the Numpy guide contains information for SciPy's other packages, which are not needed - only Numpy is required.*
+
+To install any of these components, open `cmd` in 
+
 
 ### User Guide
 1. 
