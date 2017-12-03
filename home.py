@@ -31,7 +31,7 @@ def save():
     im = grey.point((lambda x: 0 if x<128 else 255), '1')    
     im.save('img.png')
 
-    savedImg = Image.open("img.png")
+    savedImg = io.fit(Image.open("img.png"), (28,28))
     #image = predict(savedImg)
 
     prediction = rm.predict(savedImg)

@@ -35,5 +35,6 @@ def predict(image):
     imgArr = np.ndarray.flatten(np.array(image)).reshape(1, 784)
 
     prediction = tf.argmax(y_conv,1)
-    print("Prediction: {}".format(prediction.eval(feed_dict={x:imgArr, keep_prob:1.0}, session=sess)))
-    return prediction.eval(feed_dict={x:imgArr, keep_prob:1.0}, session=sess)
+    digit = prediction.eval(feed_dict={x:imgArr, keep_prob:1.0}, session=sess)
+    print("Prediction: {}".format(digit))
+    return digit
