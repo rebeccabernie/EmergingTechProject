@@ -20,9 +20,14 @@ To clone this repository to your own machine, open the command line in the direc
 
 The project requires [Python 3](https://www.python.org/downloads/), [Flask](http://flask.pocoo.org/), and [TensorFlow](https://www.tensorflow.org/). If you haven't got Python 3 installed, I'd recommend using a distribution like 
 [Anaconda](https://www.anaconda.com/download/) which simplifies installation and can be used to manage packages and updates. [Pillow](http://pillow.readthedocs.io/en/3.1.x/index.html) and [Numpy](http://www.numpy.org/) are used by the program to process and manipulate a given image into the right format for TensorFlow to perform operations on, so these libraries are also required. To install any of the above, run `pip3 install xyz` on the command line in the project folder, where xyz is the component to be installed - e.g. `pip3 install pillow`.  
-*See full installation guides for each of the components for more detail: [Flask](http://flask.pocoo.org/docs/0.12/installation/), [TensorFlow](https://www.tensorflow.org/install/), [Pillow](http://pillow.readthedocs.io/en/3.1.x/installation.html), [Numpy](https://scipy.org/install.html). Note that the Numpy guide contains information for SciPy's other packages, which are not needed - only Numpy is required.*
+*See full installation guides for each of the components for more detail: [Flask](http://flask.pocoo.org/docs/0.12/installation/), [TensorFlow](https://www.tensorflow.org/install/), [Pillow](http://pillow.readthedocs.io/en/3.1.x/installation.html), [Numpy](https://scipy.org/install.html).*  
+*Note that the Numpy guide contains information for SciPy's other packages, which are not needed - only Numpy is required.*
 
-To install any of these components, open `cmd` in 
+#### Checkpoints
+The training process for this neural network can take some time - in one case training on 3000 images, not even a quarter of the full training set, took over an hour. Standard machines may also freeze during the process. Even on a powerful machine the process would still take too long from a user's point of view, so I've included the model's checkpoints in the repository. The checkpoints folder contains the saved model training information so the network doesn't have to be trained on every run - if the folder is not present, run the `mnist.py` file - this will train the model on the MNIST training images. Once complete, `home.py` can be run as normal.
+
+#### Accuracy
+With current settings, the model is between 96-99% accurate. This is achieved using only 1,500 images of the available 20,000. If you'd like the best possible accuracy, increase the `range(1500)` on `line 80` of `mnist.py` and re-run the `mnist.py` file - this will retrain the model and save the new checkpoints. According to the TensorFlow [tutorial](https://www.tensorflow.org/get_started/mnist/pros), the highest accuracy this method gives is 99.2% by training all 20,000 images. Bear in mind that a high number will take much longer, and will also tend to make less of a difference to the end accuracy percentage - 1,500 has an accuracy of around 97%, 3,000 is about 98%, 10,000 may only be 98.5% and so on. At 1,500 images and , the project has yet to make a wrong prediction 
 
 
 ### User Guide
