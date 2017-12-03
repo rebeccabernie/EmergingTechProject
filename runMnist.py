@@ -1,6 +1,4 @@
 import tensorflow as tf
-from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 import numpy as np
 
 # Adapted from http://www.itzikbs.com/tensorflow-deep-mnist-experts-tutorial / https://github.com/sitzikbs/TensorFlow-Tutorials/blob/master/ImportModel.py

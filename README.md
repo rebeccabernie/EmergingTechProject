@@ -31,7 +31,7 @@ With current settings, the model is between 97-99% accurate. This is achieved us
 
 ### User Guide
 1. Once the project has been set up as described above, run `home.py` and open a browser window to http://127.0.0.1:5000/.
-2. Use the `Choose File` button to select an image from your computer. I've included 500 sample MNIST test images in the [SampleImages](https://github.com/rebeccabernie/EmergingTechProject/tree/master/SampleImages) folder to choose from, none of which the model has seen before.
+2. Use the `Choose File` button to select an image from your computer. I've included 500 sample MNIST test images in the [SampleImages](https://github.com/rebeccabernie/EmergingTechProject/tree/master/SampleImages) folder to choose from, which have not been used to train the model.
 3. Click the `Upload File` button. The program's prediction will appear in the Prediction section.
 
 
