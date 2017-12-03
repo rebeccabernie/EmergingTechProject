@@ -8,7 +8,7 @@
 
 Digit Recogniser is a web application that will recognise digits in images uploaded by a user. The project was developed in Python3, using [Flask](http://flask.pocoo.org/) and [TensorFlow](https://www.tensorflow.org/). The front-end was built using HTML, [Bootstrap](https://getbootstrap.com/) and [jQuery](http://jquery.com/).  
 
-The MNIST database was used to train the neural network model. The database contains 70,000 handwritten digits, 60,000 or training and the remaining 10,000 for testing. This project was trained using 2,500 images from the training set.
+The [MNIST database](http://yann.lecun.com/exdb/mnist/) was used to train the neural network model. The database contains 70,000 handwritten digits, 60,000 or training and the remaining 10,000 for testing. This project was trained using 2,500 images from the training set.
 
 ### Project Outline
 1. Create a web application in Python to recognise digits in images.  
