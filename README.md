@@ -41,7 +41,7 @@ With current settings, the model is between 97 and 99% accurate. This is achieve
 
 ### Digit Recognition Feature
 This project uses the training images contained in the [MNIST](http://yann.lecun.com/exdb/mnist/) database of handwritten digits to train a neural network to recognise patterns in images uploaded by the user. The network is trained on 2,500 images, retraining the network after each batch of 50 images.  
-TensorFlow's `examples` module provides access to various example datasets, one of which is the MNIST set. The data is imported in the `mnist.py` file in one hot encoded format, a format better suited to machine learning.  A *one hot vector* is a vector that has many dimensions, one containing a $1$ and the rest containing $0$s. A $1$ indicates that the vector is that category. In terms of MNIST, a digit $n$ is represented as a $1$ in the $nth$ column. This data might look like: 
+TensorFlow's `examples` module provides access to various example datasets, one of which is the MNIST set. The data is imported in the `mnist.py` file in one hot encoded format, a format better suited to machine learning.  A *one hot vector* is a vector that has many dimensions, one containing a 1 and the rest containing 0s. A 1 indicates that the vector is that category. In terms of MNIST, a digit `n` is represented as a 1 in the `nth` column. This data might look like: 
 
 |     		| 0    | 1 	  | 2 	 | 3 	| 4    | 5 	  | 6 	 | 7 	| 8    | 9    |
 |---- 		| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
